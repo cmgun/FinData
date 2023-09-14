@@ -1,5 +1,6 @@
 """
 Data source:https://hqdata.compass.cn/
+Missing 2020,2021
 """
 import requests
 import json
@@ -7,8 +8,8 @@ import pandas as pd
 import re
 
 def get_data(code):
-    url1 = f'https://hqdata.compass.cn/test/kline.py/data.znzDo?cmd={code}|2012,2013,|0.22469521583574648&crossdomain=1693830862996509'
-    url2 = f'https://hqdata.compass.cn/test/kline.py/data.znzDo?cmd={code}|2015,2016,2017,2018,2019,2022,2023,|0.22469521583574648&crossdomain=1693830862996509'
+    url1 = f'https://hqdata.compass.cn/test/kline.py/data.znzDo?cmd={code}|2012,2013,2014,2015,2016|0.22469521583574648&crossdomain=1693830862996509'
+    url2 = f'https://hqdata.compass.cn/test/kline.py/data.znzDo?cmd={code}|2017,2018,2019,2020,2021,2022,2023,|0.22469521583574648&crossdomain=1693830862996509'
     print(f'begin request, url:{url1}')
     response1 = requests.get(url1)
     if response1.status_code == 200:

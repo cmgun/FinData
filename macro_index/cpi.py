@@ -45,7 +45,7 @@ def store_data(resp, update_rows=None):
         cpi = {'DATE': raw_object['REPORT_DATE'][:10], 'NATIONAL_BASE': raw_object['NATIONAL_BASE'],
                'CITY_BASE': raw_object['CITY_BASE'], 'RURAL_BASE': raw_object['RURAL_BASE']}
         cpi_history = pd.concat([cpi_history, pd.DataFrame(cpi, index=[0])], ignore_index=True)
-    cpi_history.to_hdf(file_name, key=dataset, mode='w', format='table')
+    cpi_history.to_hdf(file_name, key=dataset, mode='w')
     print('stored cpi data successfully.')
 
 def read_data():
@@ -55,5 +55,5 @@ def read_data():
     return cpi_history
 
 if __name__ == "__main__":
-    get_data()
-    # read_data()
+    # get_data()
+    read_data()
