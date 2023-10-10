@@ -4,7 +4,7 @@ Query cash flow statement by quarter
 import requests
 import json
 import pandas as pd
-import share_list as sl
+import stock_list as sl
 import datetime
 
 
@@ -126,7 +126,7 @@ def store_data(reports, code):
     print(f'stored {file_name} successfully.')
 
 if __name__ == "__main__":
-    code_list = sl.get_share_list('BK1037')
+    code_list = sl.get_share_list('BK0969')
     for code_info in code_list:
         reports = get_cash_flow_statement(code_info['code'], code_info['sector'])
         store_data(reports, code_info['code'])
