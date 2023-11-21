@@ -14,7 +14,7 @@ def get_stock_list(code):
     param:
     f2: latest price, f3: %change, f4: changes, f5: volume, f6: turnover,
     f7: amplitude, f8: turnover rate, f9: P/E ratio (dynamic), f10: quantity ratio,
-    f12: code, f14: name, f15: highest price, f16: lowest price, f17: today's open, f18: yesterday's close, f23: P/B PBR,
+    f12: code, f13: sector code, f14: name, f15: highest price, f16: lowest price, f17: today's open, f18: yesterday's close, f23: P/B PBR,
     f13: 0-SZ, 1-SH
     :return: f12, f13, f14,
     """
@@ -45,7 +45,8 @@ def get_stock_list(code):
         resp = json.loads(content)
         data = resp['data']['diff']
         for info in data:
-            code = {'code': info['f12'], 'name': info['f14'], 'sector': info['f13'], 'volume': info['f5'], '%change': info['f3']}
+            code = {'code': str(info['f12']), 'name': info['f14'], 'sector': info['f13'], 'volume': info['f5'],
+                    'turnover': info['f6'], '%change': info['f3']}
             result.append(code)
         pages = resp['data']['total'] / page_size
         # next page
@@ -58,7 +59,8 @@ def get_stock_list(code):
             resp = json.loads(content)
             data = resp['data']['diff']
             for info in data:
-                code = {'code': info['f12'], 'name': info['f14'], 'sector': info['f13'], 'volume': info['f5'], '%change': info['f3']}
+                code = {'code': info['f12'], 'name': info['f14'], 'sector': info['f13'], 'volume': info['f5'],
+                        'turnover': info['f6'], '%change': info['f3']}
                 result.append(code)
             pages -= 1
     else:
